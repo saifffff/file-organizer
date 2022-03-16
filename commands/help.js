@@ -8,7 +8,11 @@ function help(){
     `);
 }
 
+// let myname = "Mohammad Saif Khan";
+
 module.exports = {
     //key value pair
-    help:help
-}
+    help:help,
+    // me:myname
+
+} 
