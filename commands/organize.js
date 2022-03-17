@@ -4,11 +4,12 @@ const path  = require("path");
 const fs = require("fs");
 
 let types = {
-    media: ["mp4","mkv","mp3"],
+    videos: ["mp4","mkv"],
     archives: ["zip","rar","7z","tar","iso"],
     documents: ["docx","doc","pdf","xlsx","xls","odt","ods","epub","txt"],
     apps: ["exe","dmg","pkg","deb"],
-    images: ["jpg","png","jpeg"]
+    images: ["jpg","png","jpeg"],
+    music:["mp3","wmv"]
 }
 
 // organise functions
@@ -41,11 +42,25 @@ let types = {
             // let fileName = allFiles[i];
             // let tempfilenamearray = fileName.split(".");
             // let ext = tempfilenamearray[1];
-            let ext = path.extname(allFiles[i]); // when we get ext name using path module function we do not have to hadle for folder(undefined)
-            // if(ext!=undefined){
+            // let ext = path.extname(allFiles[i]); // when we get ext name using path module function we do not have to hadle for folder(undefined)
+            // if(ext!=""){
             // console.log(ext);
             // }
-            console.log(ext);
+            // console.log(ext);
+            let fullPathOfFile = path.join(srcPath,allFiles[i]);
+            // console.log(fullPathOfFile);
+            // 1 - check if its a file or folder
+            let isFile = fs.lstatSync(fullPathOfFile).isFile();
+            if(isFile){
+                //1.1- get ext name
+                let ext = path.extname(allFiles[i]).split(".")[1];
+                console.log(ext);
+                 //1.2- get folder name(to which category does the extention belongs)
+                 let folderName = getFolderName(ext);
+                 //1.3- copy from src folder (srcPath) and paste to destination folder
+                 copyFileToDest(srcPath,fullPathOfFile,folderName);
+            }
+
         }
 
 
