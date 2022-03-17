@@ -2,6 +2,7 @@
 
 // Imports
 let helpFunc = require("./commands/help");
+let orgFunc = require("./commands/organize");
 
 // lets take a command first
 
@@ -15,12 +16,13 @@ switch(command){
         console.log("command is tree on path - "+path);
         break;
     case "organize":
-        console.log("command is organize on path - "+path);
+        orgFunc.organizefiles(path);
+        // console.log("command is organize on path - "+path);
         break;
     case "help":
         helpFunc.help();
         break;
     default:
-        console.log("command not found\nplease try again");
+        console.log("command not found");
         break;
 }

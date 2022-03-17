@@ -12,7 +12,7 @@ function help(){
 
 module.exports = {
     //key value pair
-    help:help,
+    help:help
     // me:myname
 
 } 

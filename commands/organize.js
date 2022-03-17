@@ -17,9 +17,9 @@ let types = {
      if(srcPath == undefined){
          console.log(srcPath); // in empty condition it will pass undefined
          srcPath = process.cwd(); // if undefined it takes path as cwd(current working directory)
-         console.log(srcPath);
+         console.log("src is cwd now");
      }else{
-         console.log(srcPath);
+         console.log("src path ="+srcPath);
      }
 
      let organizedFiles = path.join(srcPath,"organized_files");
@@ -72,6 +72,7 @@ let types = {
                 if(xt == ext){return key;}
             }
         }
+        return "others";
         // return folderName;
     }
 
@@ -89,6 +90,10 @@ let types = {
 
     }
 
-    let srcPath = "C:\\Users\\angry\\OneDrive\\Desktop\\fjpdev\\learnNode\\fileOrganizer\\downloads";
+//     let srcPath = "C:\\Users\\angry\\OneDrive\\Desktop\\fjpdev\\learnNode\\fileOrganizer\\downloads";
 
-  organize(srcPath);
+//   organize(srcPath);
+
+  module.exports = {
+      organizefiles : organize
+  }
