@@ -27,7 +27,7 @@ let types = {
 
      //fs.mkdirSync() --> creates a directory syncronously to the specified path 
         if(fs.existsSync(organizedFiles)){
-        console.log("folder exists");
+        // console.log("folder exists");
         }else{
             fs.mkdirSync(organizedFiles);
         }
@@ -54,15 +54,38 @@ let types = {
             if(isFile){
                 //1.1- get ext name
                 let ext = path.extname(allFiles[i]).split(".")[1];
-                console.log(ext);
+                // console.log(ext);
                  //1.2- get folder name(to which category does the extention belongs)
                  let folderName = getFolderName(ext);
+                //  console.log(folderName);
                  //1.3- copy from src folder (srcPath) and paste to destination folder
                  copyFileToDest(srcPath,fullPathOfFile,folderName);
             }
-
         }
+    }
 
+    function getFolderName(ext){
+        for(let key in types){
+            // console.log(key);
+            for(let i = 0; i < types[key].length; i++){
+                let xt = types[key][i];
+                if(xt == ext){return key;}
+            }
+        }
+        // return folderName;
+    }
+
+    function copyFileToDest(srcPath,fullPathOfFile,folderName){
+        //get dest folder path 
+        let destPath = path.join(srcPath,"organized_files",folderName);
+        // check if exist or create folder from path
+        if(!fs.existsSync(destPath)){fs.mkdirSync(destPath);}
+        //now lets copy files to these folders
+        let srcFilePath = fullPathOfFile;
+        let baseFilename = path.basename(fullPathOfFile);
+        let destFilePath = path.join(destPath,baseFilename);
+        fs.copyFileSync(srcFilePath,destFilePath);
+        // console.log("i have val = "+fullPathOfFile);
 
     }
 
