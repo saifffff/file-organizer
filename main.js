@@ -3,6 +3,7 @@
 // Imports
 let helpFunc = require("./commands/help");
 let orgFunc = require("./commands/organize");
+let treeFunc = require("./commands/tree");
 
 // lets take a command first
 
@@ -13,7 +14,8 @@ let path = inputArr[1];
 // based on cmd we can call command specific functions
 switch(command){
     case "tree":
-        console.log("command is tree on path - "+path);
+        // console.log("command is tree on path - "+path);
+        treeFunc.call_tree(path);
         break;
     case "organize":
         orgFunc.organizefiles(path);
